@@ -1,0 +1,14 @@
+.resources {
+  margin-top: 40px;
+
+  .list-block {
+    display: flex;
+    justify-content: space-around;  
+    flex-wrap: wrap;
+    padding: 0 40px;    
+  }
+
+  h2 {
+    text-align: center;
+  }
+}

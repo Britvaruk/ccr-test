@@ -1,0 +1,35 @@
+<div class="user-card">
+  <h2>Карточка пользователя</h2>
+
+  <div class="content">
+    <img class="avatar" src="{{user.avatar}}" alt="">
+
+    <div class="text-block">
+      <div class="text-line">        
+        <span>Имя:</span>
+        <input class="text" type="text" [disabled]="true" 
+        [(ngModel)]="user.first_name" #input>
+      </div>
+      <div class="text-line">        
+        <span>Фамилия:</span>        
+        <input class="text" type="text" [disabled]="true" 
+        [(ngModel)]="user.last_name" #input>
+      </div>
+      <div class="text-line">        
+        <span>Email:</span>        
+        <input class="text" type="text" [disabled]="true" 
+        [(ngModel)]="user.email" #input>
+      </div>
+      <div class="text-line">        
+        <span>ID:</span>
+        <input class="text" type="text" [disabled]="true" 
+        [(ngModel)]="user.id">        
+      </div>    
+    </div>    
+  </div>
+
+  <div class="button-block">
+    <button class="btn" (click)="editUser()">{{buttonText}}</button>
+  </div>
+  
+</div>

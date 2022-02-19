@@ -1,0 +1,8 @@
+<div class="resources">
+  <h2>Список ресурсов</h2>
+
+  <div class="list-block">
+    <app-resource *ngFor="let el of resListService.resList"
+    [res]="el"></app-resource>
+  </div>
+</div>

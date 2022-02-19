@@ -1,0 +1,22 @@
+<header>
+  <div class="container">
+    <a routerLinkActive="active" routerLink="/"><h1>Test.</h1></a>
+
+    <div class="button-block">
+      <button class="header-btn">Войти</button>
+      <button class="header-btn">Регистрация</button>
+    </div>
+  </div>  
+</header>
+
+<main>
+  <div class="container">
+    <nav>
+      <a routerLinkActive="active" routerLink="/users">Пользователи</a>
+      <hr>
+      <a routerLinkActive="active" routerLink="/resources">Ресурсы</a>
+    </nav>
+
+    <router-outlet></router-outlet>
+  </div>    
+</main>

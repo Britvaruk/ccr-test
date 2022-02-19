@@ -1,0 +1,8 @@
+<div class="users">
+  <h2>Список пользователей</h2>
+
+  <div class="list-block">
+    <app-user *ngFor="let el of userListService.userList" 
+    [user]="el" (onRemove)="deleteUser($event)"></app-user>
+  </div>  
+</div>

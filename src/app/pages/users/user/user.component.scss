@@ -1,0 +1,36 @@
+.user {
+  display: flex;  
+  align-items: center;
+  margin-top: 40px;
+}
+
+.user-link {
+  display: flex;
+  align-items: center;   
+  width: 300px;  
+
+  background: white;
+  border-radius: 60px 0 0 60px;
+
+  img {
+    object-fit: cover;
+    width: 85px;
+    height: 85px;    
+    border-radius: 60px;
+
+    margin-right: 20px;
+  }
+
+  span {
+    font-size: 20px;    
+  }
+}
+
+.del-btn {
+  padding: 0;
+  width: 35px;
+  height: 35px;
+  font-size: 30px;  
+  margin-left: 10px;
+  border-radius: 10px;
+}
