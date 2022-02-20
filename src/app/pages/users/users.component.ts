@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs';
 import { ApiService } from 'src/app/core/services/api.service';
 import { UserListService } from 'src/app/core/services/user-list.service';
 
@@ -17,17 +18,19 @@ export class UsersComponent implements OnInit {
   }
 
   fetchUsers() {
-    this.userListApi.fetchUserList()
-    .subscribe(response => {
-      this.userListService.userList = response.data;
-    })
+    this.userListService.userList = 
+    this.userListApi.fetchUserList().pipe(
+      map(response => response.data)
+    )
   }
 
   deleteUser(id: number) {
     this.userListApi.removeUser(id)
-    .subscribe(() => {
+    .subscribe(() => {   
       this.userListService.userList = 
-      this.userListService.userList.filter(el => el.id !== id)
+      this.userListService.userList!.pipe(
+        map(el => el.filter(el => el.id !== id))
+      )      
     })
   }
 }

@@ -20,8 +20,8 @@ export class UserCardComponent implements OnInit {
     private route: ActivatedRoute) { }
 
   ngOnInit(): void { 
-    this.route.data.subscribe(data => {
-      this.user = data['user'].data;
+    this.route.data.subscribe(response => {
+      this.user = response['user'].data;
     })       
   }
 

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { map } from 'rxjs';
 import { ApiService } from 'src/app/core/services/api.service';
 import { ResourceListService } from 'src/app/core/services/resource-list.service';
 
@@ -17,10 +18,9 @@ export class ResourcesComponent implements OnInit {
   }
 
   fetchResources() {
-    this.resListApi.fetchResourceList()
-    .subscribe(response => {
-      this.resListService.resList = response.data;
-    })
+    this.resListService.resList =
+    this.resListApi.fetchResourceList().pipe(
+      map(resp => resp.data)
+    )
   }
-
 }

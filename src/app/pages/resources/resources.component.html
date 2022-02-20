@@ -2,7 +2,7 @@
   <h2>Список ресурсов</h2>
 
   <div class="list-block">
-    <app-resource *ngFor="let el of resListService.resList"
+    <app-resource *ngFor="let el of resListService.resList | async"
     [res]="el"></app-resource>
   </div>
 </div>
