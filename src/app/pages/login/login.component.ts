@@ -5,11 +5,11 @@ import { ApiService } from 'src/app/core/services/api.service';
 import { UserLogin } from 'src/app/core/services/auth.service';
 
 @Component({
-  selector: 'app-registration',
-  templateUrl: './registration.component.html',
-  styleUrls: ['./registration.component.scss']
+  selector: 'app-login',
+  templateUrl: './login.component.html',
+  styleUrls: ['./login.component.scss']
 })
-export class RegistrationComponent implements OnInit {
+export class LoginComponent implements OnInit {
   public form!: FormGroup;
   error = false;
 
@@ -36,12 +36,12 @@ export class RegistrationComponent implements OnInit {
     if (this.form.valid) {
       this.form.reset();
 
-      this.regApi.registration(user).subscribe({
+      this.regApi.login(user).subscribe({
         next: resp => {
           console.log(resp.token);
-          this.error = false;         
-          localStorage.setItem('auth_token', resp.token); 
-          this.router.navigate(['/']);          
+          this.error = false;        
+          localStorage.setItem('auth_token', resp.token);  
+          this.router.navigate(['/']);
         },
         error: err => {
           console.log(err.message);

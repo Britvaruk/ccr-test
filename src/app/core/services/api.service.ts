@@ -1,6 +1,7 @@
-import { HttpClient, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, Observable, throwError } from "rxjs";
+import { UserLogin } from "./auth.service";
 import { ResourcesPage } from "./resource-list.service";
 import { User, UserPage, UsersPage } from "./user-list.service";
 
@@ -47,5 +48,13 @@ export class ApiService {
         return throwError(() => new Error(err.message));
       })
     )
+  }
+
+  registration(data: UserLogin): Observable<any> {
+    return this.http.post<any>('https://reqres.in/api/register', data)
+  }
+
+  login(data: UserLogin): Observable<any> {
+    return this.http.post<any>('https://reqres.in/api/login', data)
   }
 }

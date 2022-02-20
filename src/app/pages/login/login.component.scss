@@ -1,11 +1,11 @@
-.reg-container {
+.login-container {
   display: flex;
   flex-direction: column;
   align-items: center;
   margin-top: 100px;
 }
 
-.reg-form {  
+.login-form {  
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -44,7 +44,7 @@ input {
 }
 
 .btn {  
-  margin-top: 50px;
+  margin-top: 40px;
   padding: 10px 40px;  
   background: rebeccapurple;
   border-radius: 5px;  

@@ -32,3 +32,10 @@ a {
   text-decoration: none;  
   color: black;
 }
+
+.form-control input.ng-invalid.ng-touched {
+  border: 2px solid red;
+}
+.form-control input.ng-valid.ng-touched {
+  border: 2px solid green;
+}

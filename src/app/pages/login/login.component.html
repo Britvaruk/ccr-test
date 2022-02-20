@@ -1,7 +1,7 @@
-<div class="reg-container">
+<div class="login-container">
 
-  <form class="reg-form" [formGroup]="form" (ngSubmit)="submit()"> 
-    <h1>Регистрация</h1>
+  <form class="login-form" [formGroup]="form" (ngSubmit)="submit()"> 
+    <h1>Авторизация</h1>
 
     <div class="form-control">
       <label>E-mail:</label>
@@ -38,11 +38,11 @@
     </div>
 
     <button class="btn reg" type="submit" [disabled]="form.invalid">
-      Зарегистрироваться
+      Войти
     </button>
 
     <div class="error-block" *ngIf="error">
-      <span>ОШИБКА РЕГИСТРАЦИИ</span>
+      <span>ОШИБКА АВТОРИЗАЦИИ</span>
     </div>
 
   </form>
