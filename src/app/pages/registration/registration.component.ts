@@ -19,6 +19,9 @@ export class RegistrationComponent implements OnInit {
   get password() {
     return this.form.get('password')
   }
+  get passwordConfirmation() {
+    return this.form.get('passwordConfirmation')
+  }
 
   constructor(private formBuilder: FormBuilder,
     private router: Router,
@@ -31,6 +34,9 @@ export class RegistrationComponent implements OnInit {
       ]],
       password: [null, [
         Validators.required, Validators.minLength(6)
+      ]],
+      passwordConfirmation: [null, [
+        Validators.required, this.confirmationValidator
       ]]
     })
   }
@@ -58,4 +64,15 @@ export class RegistrationComponent implements OnInit {
       })
     }
   }
+
+  confirmationValidator = (control: FormControl): {[key: string]: boolean} => {
+    if (!control.value) {
+      return {required: true};
+    }
+    if (control.value !== this.password?.value) {
+      return {confirm: true, passwordDontMatch: true};
+    }
+    return {};
+  };
+
 }
