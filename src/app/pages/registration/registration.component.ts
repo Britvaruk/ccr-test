@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { UserLogin } from 'src/app/core/interfaces/login.interface';
 import { ApiService } from 'src/app/core/services/api.service';
-import { UserLogin } from 'src/app/core/services/auth.service';
 
 @Component({
   selector: 'app-registration',
@@ -13,24 +13,32 @@ export class RegistrationComponent implements OnInit {
   public form!: FormGroup;
   error = false;
 
-  constructor(private router: Router,
-    private regApi: ApiService) { }
+  get email() {
+    return this.form.get('email')
+  }
+  get password() {
+    return this.form.get('password')
+  }
+
+  constructor(private formBuilder: FormBuilder,
+    private router: Router,
+    private regApi: ApiService) { }  
 
   ngOnInit(): void {
-    this.form = new FormGroup({
-      email: new FormControl('', [
+    this.form = this.formBuilder.group({
+      email: ['', [
         Validators.required, Validators.email
-      ]),
-      password: new FormControl(null, [
+      ]],
+      password: [null, [
         Validators.required, Validators.minLength(6)
-      ])
+      ]]
     })
   }
 
   submit() {
     const user: UserLogin = {
-      email: this.form.get('email')?.value,
-      password: this.form.get('password')?.value
+      email: this.email?.value,
+      password: this.password?.value
     }
 
     if (this.form.valid) {

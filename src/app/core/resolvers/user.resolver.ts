@@ -1,8 +1,8 @@
 import { Injectable } from "@angular/core";
 import { ActivatedRouteSnapshot, Resolve, RouterStateSnapshot } from "@angular/router";
 import { Observable } from "rxjs";
+import { UserPage } from "../interfaces/user.interface";
 import { ApiService } from "../services/api.service";
-import { UserPage } from "../services/user-list.service";
 
 
 @Injectable({

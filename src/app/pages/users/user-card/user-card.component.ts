@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChildren } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { User } from 'src/app/core/interfaces/user.interface';
 import { ApiService } from 'src/app/core/services/api.service';
-import { User } from 'src/app/core/services/user-list.service';
 
 @Component({
   selector: 'app-user-card',
@@ -17,8 +17,7 @@ export class UserCardComponent implements OnInit {
   @ViewChildren('input') inputsRef!: ElementRef[];
 
   constructor(private userListApi: ApiService,
-    private route: ActivatedRoute,
-    private router: Router) { }
+    private route: ActivatedRoute) { }
 
   ngOnInit(): void { 
     this.route.data.subscribe(data => {
@@ -27,20 +26,10 @@ export class UserCardComponent implements OnInit {
   }
 
   editUser() {
-    if (this.editMode === true) {
-      for (let el of this.inputsRef) {      
-        el.nativeElement.disabled = true;
-        el.nativeElement.style.border = 'none';
-      }
-
-      this.userListApi.editUser(7, this.user).subscribe(response => {
+    if (this.editMode) {    
+      this.userListApi.editUser(this.user.id!, this.user).subscribe(response => {
         this.user = response.data;
       })
-    } else {
-      for (let el of this.inputsRef) {      
-        el.nativeElement.disabled = false;
-        el.nativeElement.style.border = '1px solid black';
-      }
     }
        
     this.changeMod();
@@ -49,7 +38,7 @@ export class UserCardComponent implements OnInit {
   changeMod() {
     this.editMode = !this.editMode;
 
-    if (this.editMode === true) {
+    if (this.editMode) {
       this.buttonText = 'Сохранить';
     } else {
       this.buttonText = 'Редактировать';

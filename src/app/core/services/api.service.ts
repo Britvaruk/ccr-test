@@ -1,9 +1,10 @@
-import { HttpClient, HttpHeaders, HttpParams } from "@angular/common/http";
+import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { catchError, Observable, throwError } from "rxjs";
-import { UserLogin } from "./auth.service";
-import { ResourcesPage } from "./resource-list.service";
-import { User, UserPage, UsersPage } from "./user-list.service";
+import { UserLogin } from "../interfaces/login.interface";
+import { ResourcesPage } from "../interfaces/resource.interface";
+import { User, UserPage, UsersPage } from "../interfaces/user.interface";
+import { LOGIN, REGISTRATION, RESOURCE_LIST, USER_ITEM, USER_LIST } from "./api.path";
 
 @Injectable({
   providedIn: 'root'
@@ -12,7 +13,7 @@ export class ApiService {
   constructor(private http: HttpClient) {}
 
   fetchUserList(): Observable<UsersPage> {
-    return this.http.get<UsersPage>('https://reqres.in/api/users', {
+    return this.http.get<UsersPage>(USER_LIST, {
       params: new HttpParams().set('page', '2'),
     })
     .pipe(      
@@ -23,7 +24,7 @@ export class ApiService {
   }
   
   fetchUser(id: number): Observable<UserPage> {
-    return this.http.get<UserPage>(`https://reqres.in/api/users/${id}`)
+    return this.http.get<UserPage>(USER_ITEM.replace(':id', id.toString()))
     .pipe(
       catchError(err => {
         return throwError(() => new Error(err.message));
@@ -32,17 +33,17 @@ export class ApiService {
   }
   
   editUser(id: number, data: User): Observable<any> {
-    return this.http.put<UserPage>(`https://reqres.in/api/users/${id}`, {
+    return this.http.put<UserPage>(USER_ITEM.replace(':id', id.toString()), {
       data
     })
   }
 
   removeUser(id: number): Observable<any> {
-    return this.http.delete<void>(`https://reqres.in/api/users/${id}`)
+    return this.http.delete<void>(USER_ITEM.replace(':id', id.toString()))
   }
 
   fetchResourceList(): Observable<ResourcesPage> {
-    return this.http.get<ResourcesPage>('https://reqres.in/api/unknown')
+    return this.http.get<ResourcesPage>(RESOURCE_LIST)
     .pipe(      
       catchError(err => {
         return throwError(() => new Error(err.message));
@@ -51,10 +52,10 @@ export class ApiService {
   }
 
   registration(data: UserLogin): Observable<any> {
-    return this.http.post<any>('https://reqres.in/api/register', data)
+    return this.http.post<any>(REGISTRATION, data)
   }
 
   login(data: UserLogin): Observable<any> {
-    return this.http.post<any>('https://reqres.in/api/login', data)
+    return this.http.post<any>(LOGIN, data)
   }
 }

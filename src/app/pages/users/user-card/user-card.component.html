@@ -7,17 +7,17 @@
     <div class="text-block">
       <div class="text-line">        
         <span>Имя:</span>
-        <input class="text" type="text" [disabled]="true" 
+        <input class="text" type="text" [disabled]="!editMode" 
         [(ngModel)]="user.first_name" #input>
       </div>
       <div class="text-line">        
         <span>Фамилия:</span>        
-        <input class="text" type="text" [disabled]="true" 
+        <input class="text" type="text" [disabled]="!editMode" 
         [(ngModel)]="user.last_name" #input>
       </div>
       <div class="text-line">        
         <span>Email:</span>        
-        <input class="text" type="text" [disabled]="true" 
+        <input class="text" type="text" [disabled]="!editMode" 
         [(ngModel)]="user.email" #input>
       </div>
       <div class="text-line">        

@@ -7,13 +7,13 @@
       <label>E-mail:</label>
       <input type="text" placeholder="Введите email..." formControlName="email">
       <div 
-        *ngIf="form.get('email')?.invalid && form.get('email')?.touched" 
+        *ngIf="email?.invalid && email?.touched" 
         class="validation"
       >
-        <span *ngIf="form.get('email')?.errors?.['required']">
+        <span *ngIf="email?.errors?.['required']">
           Поле email не может быть пустым
         </span>
-        <span *ngIf="form.get('email')?.errors?.['email']">
+        <span *ngIf="email?.errors?.['email']">
           Email введен некорректно
         </span>        
       </div>
@@ -23,15 +23,15 @@
       <label>Пароль:</label>
       <input type="password" placeholder="Введите пароль..." formControlName="password">
       <div 
-        *ngIf="form.get('password')?.invalid && form.get('password')?.touched" 
+        *ngIf="password?.invalid && password?.touched" 
         class="validation"
       >
-        <span *ngIf="form.get('password')?.errors?.['required']">
+        <span *ngIf="password?.errors?.['required']">
           Поле пароль не может быть пустым
         </span>
-        <span *ngIf="form.get('password')?.errors?.['minlength']">
+        <span *ngIf="password?.errors?.['minlength']">
           Пароль должен быть не менее 
-          {{form.get('password')?.errors?.['minlength']?.['requiredLength']}}
+          {{password?.errors?.['minlength']?.['requiredLength']}}
           символов
         </span>
       </div>

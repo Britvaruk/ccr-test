@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Resource } from 'src/app/core/services/resource-list.service';
+import { Resource } from 'src/app/core/interfaces/resource.interface';
 
 @Component({
   selector: 'app-resource',
